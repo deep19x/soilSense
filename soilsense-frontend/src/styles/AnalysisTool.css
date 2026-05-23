@@ -1,0 +1,130 @@
+.analysis-container {
+  padding: 3.5rem 0;
+  background: var(--cream);
+}
+
+.upload-section {
+  background: var(--card-bg);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 2.8rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.upload-section:hover {
+  border-color: var(--leaf-light);
+  background: var(--leaf-pale);
+}
+
+.upload-icon {
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.upload-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--soil-dark);
+}
+
+.upload-sub {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+.upload-btn {
+  display: inline-block;
+  background: var(--leaf-pale);
+  color: var(--leaf);
+  border: 1px solid #C0DD97;
+  padding: 8px 22px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  margin-top: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-btn:hover {
+  background: #C0DD97;
+}
+
+.divider-text {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  margin: -1rem 0 1.5rem;
+}
+
+.analyze-row {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0 3rem;
+}
+
+.btn-analyze {
+  background: var(--soil-dark);
+  color: var(--amber-light);
+  border: none;
+  padding: 16px 52px;
+  border-radius: 12px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-analyze:hover:not(:disabled) {
+  background: var(--soil-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(44, 26, 14, 0.22);
+}
+
+.btn-analyze:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loader {
+  text-align: center;
+  padding: 2.5rem;
+}
+
+.loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #EDE5DC;
+  border-top-color: var(--leaf);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  animation: spin 0.8s linear infinite;
+}
+
+p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .analysis-container {
+    padding: 2rem 0;
+  }
+
+  .upload-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .btn-analyze {
+    padding: 12px 32px;
+    font-size: 1rem;
+  }
+}

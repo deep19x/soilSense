@@ -1,0 +1,71 @@
+.nutrient-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.nutrient-bar-card {
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  border: 1px solid var(--border);
+}
+
+.nutrient-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.nutrient-name {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--soil-dark);
+}
+
+.nutrient-val {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.bar-track {
+  background: #EDE5DC;
+  border-radius: 4px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+.bar-fill.good {
+  background: var(--leaf-light);
+}
+
+.bar-fill.warn {
+  background: var(--amber);
+}
+
+.bar-fill.bad {
+  background: #E24B4A;
+}
+
+.nutrient-status {
+  font-size: 0.71rem;
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .nutrient-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

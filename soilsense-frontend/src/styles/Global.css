@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --soil-dark: #2C1A0E;
+  --soil-mid: #5C3A1E;
+  --soil-warm: #8B5E3C;
+  --leaf: #3B6D11;
+  --leaf-light: #639922;
+  --leaf-pale: #EAF3DE;
+  --amber: #BA7517;
+  --amber-light: #FAC775;
+  --amber-pale: #FAEEDA;
+  --cream: #FAF7F2;
+  --card-bg: #FFFFFF;
+  --text-main: #1A1008;
+  --text-muted: #6B5744;
+  --border: #D8C9B9;
+  --shadow: 0 2px 16px rgba(44, 26, 14, 0.08);
+  --radius: 16px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* UTILITY CLASSES */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.btn-primary {
+  background: var(--leaf);
+  color: #fff;
+  border: none;
+  padding: 14px 34px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--leaf-light);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--amber-light);
+  border: 1.5px solid rgba(250, 199, 117, 0.45);
+  padding: 14px 34px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: var(--amber-light);
+  background: rgba(250, 199, 117, 0.09);
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--soil-dark);
+  margin-bottom: 0.4rem;
+}
+
+.section-sub {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 2rem;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fadeUp {
+  animation: fadeUp 0.5s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+}

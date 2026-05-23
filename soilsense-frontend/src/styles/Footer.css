@@ -1,0 +1,12 @@
+footer {
+  background: var(--soil-dark);
+  color: #7A6050;
+  text-align: center;
+  padding: 1.6rem;
+  font-size: 0.8rem;
+  margin-top: 4rem;
+}
+
+footer span {
+  color: var(--amber-light);
+}

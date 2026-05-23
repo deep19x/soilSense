@@ -1,0 +1,66 @@
+.how-section {
+  margin-top: 3.5rem;
+  padding: 3.5rem 1.5rem;
+}
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.how-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: all 0.2s;
+}
+
+.how-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(44, 26, 14, 0.12);
+}
+
+.how-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3rem;
+  color: #EDE5DC;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.how-card h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--soil-dark);
+  margin-bottom: 6px;
+}
+
+.how-card p {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .how-section {
+    margin-top: 2rem;
+    padding: 2rem 1rem;
+  }
+
+  .how-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .how-card {
+    padding: 1.2rem;
+  }
+
+  .how-num {
+    font-size: 2.2rem;
+  }
+}

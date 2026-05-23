@@ -1,0 +1,140 @@
+.hero {
+  position: relative;
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80&fit=crop');
+  background-size: cover;
+  background-position: center 40%;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+
+.hero-bg.loaded {
+  transform: scale(1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(28, 14, 5, 0.82) 0%,
+    rgba(58, 32, 12, 0.70) 50%,
+    rgba(20, 50, 10, 0.65) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-tag {
+  display: inline-block;
+  background: rgba(99, 153, 34, 0.22);
+  color: #A8D45A;
+  border: 1px solid rgba(99, 153, 34, 0.45);
+  padding: 5px 18px;
+  border-radius: 50px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: #FAF7F2;
+  line-height: 1.08;
+  margin-bottom: 1.2rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+}
+
+.hero h1 span {
+  color: var(--amber-light);
+}
+
+.hero p {
+  color: #D4B896;
+  font-size: 1.05rem;
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto 2.6rem;
+  line-height: 1.75;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-badge {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 10px 16px;
+  text-align: left;
+}
+
+.hero-badge-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero-badge-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: #A8D45A;
+}
+
+.hero-badge-sub {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 1px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 400px;
+    padding: 3rem 1rem 2rem;
+  }
+
+  .hero-badge {
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 12px;
+  }
+
+  .hero-badge-val {
+    font-size: 1rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+}

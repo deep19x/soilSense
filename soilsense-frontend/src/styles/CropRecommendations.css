@@ -1,0 +1,92 @@
+.crop-recommendations {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.crop-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--soil-dark);
+  margin-bottom: 1.5rem;
+}
+
+.crops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.crop-card {
+  background: linear-gradient(135deg, var(--leaf-pale) 0%, rgba(100, 153, 34, 0.1) 100%);
+  border: 1px solid #C0DD97;
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.crop-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 109, 17, 0.15);
+  border-color: var(--leaf);
+}
+
+.crop-rank {
+  font-size: 0.7rem;
+  color: var(--leaf);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.crop-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.05rem;
+  color: var(--soil-dark);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.crop-confidence {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.confidence-bar {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: var(--leaf-light);
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0;
+}
+
+.confidence-text {
+  font-size: 0.75rem;
+  color: var(--leaf);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .crops-grid {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .crop-card {
+    padding: 1rem;
+  }
+
+  .crop-name {
+    font-size: 0.95rem;
+  }
+}
