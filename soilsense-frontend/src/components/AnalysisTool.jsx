@@ -7,29 +7,26 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 function AnalysisTool() {
   const [formData, setFormData] = useState({
-  n: '',
-  p: '',
-  k: '',
-  temp: '',
-  humidity: '',
-  ph: '',
-});
+    N: '',
+    P: '',
+    K: '',
+    moisture: '',
+  });
 
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [file, setFile] = useState(null);
 
   useEffect(() => {
     const handleLoadDemo = () => {
-  setFormData({
-    n: '148',
-    p: '22',
-    k: '210',
-    temp: '22',
-    humidity: '70',
-    ph: '6.5',
-  });
-};
+      setFormData({
+        N: '90',
+        P: '42',
+        K: '43',
+        moisture: '82',
+      });
+    };
 
     window.addEventListener('loadDemo', handleLoadDemo);
     return () => window.removeEventListener('loadDemo', handleLoadDemo);
@@ -38,6 +35,7 @@ function AnalysisTool() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    setError(null);
   };
 
   const handleFileChange = (e) => {
@@ -51,32 +49,50 @@ function AnalysisTool() {
     }
   };
 
-  const handleAnalyze = async () => {
+  const handlePredict = async () => {
+    // Validate inputs
+    if (!formData.N || !formData.P || !formData.K || !formData.moisture) {
+      setError('Please fill all fields');
+      return;
+    }
+
     setLoading(true);
+    setError(null);
     setResults(null);
 
     try {
-      const response = await fetch(`${API_URL}/api/analyze`, {
+      const response = await fetch(`${API_URL}/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          N: parseFloat(formData.N),
+          P: parseFloat(formData.P),
+          K: parseFloat(formData.K),
+          moisture: parseFloat(formData.moisture),
+        }),
       });
 
-      if (!response.ok) throw new Error('Analysis failed');
+      if (!response.ok) throw new Error('Prediction failed');
 
       const data = await response.json();
+      
       if (data.success) {
-        setResults(data);
+        setResults({
+          crop: data.crop,
+          confidence: data.confidence,
+          top_5: data.top_5,
+          input: formData,
+        });
         setTimeout(() => {
           const resultsElement = document.getElementById('results-container');
           resultsElement?.scrollIntoView({ behavior: 'smooth' });
         }, 300);
       } else {
-        alert('Error: ' + data.error);
+        setError(data.error || 'Prediction failed');
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to analyze soil. Please try again.');
+    } catch (err) {
+      console.error('Error:', err);
+      setError('Failed to connect to backend. Make sure server is running on http://localhost:5000');
     } finally {
       setLoading(false);
     }
@@ -85,9 +101,9 @@ function AnalysisTool() {
   return (
     <div className="analysis-container" id="analysis-tool">
       <div className="container">
-        <h2 className="section-title">Analyze Your Soil</h2>
+        <h2 className="section-title">Get Crop Recommendation</h2>
         <p className="section-sub">
-          Enter sensor readings or upload a CSV data file from your field sensor device.
+          Enter soil sensor readings (N, P, K, Moisture) to get crop recommendations.
         </p>
 
         {/* UPLOAD SECTION */}
@@ -110,14 +126,28 @@ function AnalysisTool() {
         {/* INPUT GRID */}
         <InputGrid formData={formData} onInputChange={handleInputChange} />
 
-        {/* ANALYZE BUTTON */}
+        {/* ERROR MESSAGE */}
+        {error && (
+          <div className="error-message" style={{
+            padding: '12px 16px',
+            backgroundColor: '#ffe0e0',
+            color: '#d32f2f',
+            borderRadius: '6px',
+            marginBottom: '16px',
+            fontSize: '14px',
+          }}>
+            ⚠️ {error}
+          </div>
+        )}
+
+        {/* PREDICT BUTTON */}
         <div className="analyze-row">
           <button 
             className="btn-analyze" 
-            onClick={handleAnalyze}
+            onClick={handlePredict}
             disabled={loading}
           >
-            <span>🔬</span> {loading ? 'Analyzing…' : 'Analyze Soil Fertility'}
+            <span>🌾</span> {loading ? 'Predicting…' : 'Get Crop Recommendation'}
           </button>
         </div>
 
@@ -125,14 +155,87 @@ function AnalysisTool() {
         {loading && (
           <div className="loader">
             <div className="loader-spinner"></div>
-            <p>Running fertility analysis…</p>
+            <p>Analyzing soil conditions…</p>
           </div>
         )}
 
         {/* RESULTS */}
         {results && !loading && (
           <div id="results-container" className="fadeUp">
-            <ResultsCard results={results} />
+            <div className="results-wrapper">
+              <h3>✅ Recommended Crop</h3>
+              <div className="crop-card" style={{
+                padding: '20px',
+                backgroundColor: '#f0f9ff',
+                border: '2px solid #3B6D11',
+                borderRadius: '8px',
+                marginBottom: '20px',
+                textAlign: 'center',
+              }}>
+                <h2 style={{ color: '#3B6D11', fontSize: '32px', margin: '0 0 10px 0' }}>
+                  {results.crop.toUpperCase()}
+                </h2>
+                <p style={{ fontSize: '18px', color: '#666', margin: 0 }}>
+                  Confidence: <strong>{results.confidence}%</strong>
+                </p>
+              </div>
+
+              <h3>Top 5 Recommendations</h3>
+              <div className="top-5-list">
+                {results.top_5.map((rec) => (
+                  <div key={rec.rank} className="top-5-item" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: '12px',
+                    borderBottom: '1px solid #eee',
+                    gap: '12px',
+                  }}>
+                    <span style={{
+                      backgroundColor: '#3B6D11',
+                      color: 'white',
+                      borderRadius: '50%',
+                      width: '32px',
+                      height: '32px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'bold',
+                      fontSize: '14px',
+                    }}>
+                      {rec.rank}
+                    </span>
+                    <span style={{ flex: 1, fontWeight: '500' }}>{rec.crop}</span>
+                    <div style={{
+                      width: '120px',
+                      height: '6px',
+                      backgroundColor: '#e0e0e0',
+                      borderRadius: '3px',
+                      overflow: 'hidden',
+                    }}>
+                      <div style={{
+                        height: '100%',
+                        width: `${rec.confidence}%`,
+                        backgroundColor: '#3B6D11',
+                      }}></div>
+                    </div>
+                    <span style={{ width: '50px', textAlign: 'right', color: '#666' }}>
+                      {rec.confidence.toFixed(1)}%
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{
+                marginTop: '20px',
+                padding: '12px 16px',
+                backgroundColor: '#f5f5f5',
+                borderRadius: '6px',
+                fontSize: '13px',
+                color: '#666',
+              }}>
+                <strong>Input Values:</strong> N: {results.input.N} | P: {results.input.P} | K: {results.input.K} | Moisture: {results.input.moisture}%
+              </div>
+            </div>
           </div>
         )}
       </div>

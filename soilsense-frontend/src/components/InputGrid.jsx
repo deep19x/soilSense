@@ -3,12 +3,10 @@ import '../styles/InputGrid.css';
 
 function InputGrid({ formData, onInputChange }) {
   const inputs = [
-    { name: 'n', label: 'Nitrogen (N)', placeholder: 'e.g. 140', type: 'number', min: '0', unit: 'mg/kg', dot: '#3B6D11' },
-    { name: 'p', label: 'Phosphorus (P)', placeholder: 'e.g. 30', type: 'number', min: '0', unit: 'mg/kg', dot: '#BA7517' },
-    { name: 'k', label: 'Potassium (K)', placeholder: 'e.g. 200', type: 'number', min: '0', unit: 'mg/kg', dot: '#185FA5' },
-    { name: 'temp', label: 'Temperature', placeholder: 'e.g. 22', type: 'number', min: '0', max: '60', unit: '°C', dot: '#FF6B6B' },
-    { name: 'humidity', label: 'Humidity', placeholder: 'e.g. 70', type: 'number', min: '0', max: '100', unit: '%', dot: '#5DCAA5' },
-    { name: 'ph', label: 'pH Level', placeholder: 'e.g. 6.5', type: 'number', min: '0', max: '14', step: '0.1', unit: 'Scale 0–14', dot: '#E24B4A' },
+    { name: 'N', label: 'Nitrogen (N)', placeholder: 'e.g. 90', type: 'number', min: '0', max: '140', unit: 'mg/kg', dot: '#3B6D11' },
+    { name: 'P', label: 'Phosphorus (P)', placeholder: 'e.g. 42', type: 'number', min: '0', max: '145', unit: 'mg/kg', dot: '#BA7517' },
+    { name: 'K', label: 'Potassium (K)', placeholder: 'e.g. 43', type: 'number', min: '0', max: '205', unit: 'mg/kg', dot: '#185FA5' },
+    { name: 'moisture', label: 'Soil Moisture', placeholder: 'e.g. 82', type: 'number', min: '0', max: '100', unit: '%', dot: '#5DCAA5' },
   ];
 
   return (
@@ -23,7 +21,7 @@ function InputGrid({ formData, onInputChange }) {
             type={input.type}
             name={input.name}
             placeholder={input.placeholder}
-            value={formData[input.name]}
+            value={formData[input.name] || ''}
             onChange={onInputChange}
             min={input.min}
             max={input.max}
