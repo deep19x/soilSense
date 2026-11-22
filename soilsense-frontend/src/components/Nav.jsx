@@ -1,30 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Nav.css';
 
 function Nav() {
-  const scrollToAnalysis = () => {
-    const element = document.getElementById('analysis-tool');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="logo">
+        {/* Wrapping the logo in a Link so clicking it also goes home */}
+        <Link to="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }} className="logo">
           <div className="logo-icon">🌱</div>
-          <span>SoilSense</span>
-        </div>
+          <span style={{ color: '#2e7d32', fontWeight: 'bold' }}>SoilSync</span>
+        </Link>
         
         <div className="nav-links">
-          <a href="#dashboard">Dashboard</a>
-          <a href="#history">History</a>
-          <a href="#reports">Reports</a>
-          <a href="#about">About</a>
+          <Link to="/">Home</Link>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/about">About</Link>
         </div>
-        
-        <button className="nav-btn" onClick={scrollToAnalysis}>
-          + New Test
-        </button>
       </div>
     </nav>
   );

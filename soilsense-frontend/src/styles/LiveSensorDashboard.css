@@ -1,0 +1,121 @@
+.sensor-dashboard {
+  width: min(100% - 2rem, 1120px);
+  margin: 2rem auto;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  color: #19352a;
+  background: linear-gradient(145deg, #ffffff 0%, #f4faf5 100%);
+  border: 1px solid #dce9df;
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(33, 78, 52, 0.1);
+}
+
+.sensor-dashboard__header,
+.sensor-recommendations__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sensor-dashboard__eyebrow {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #3b7b50;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sensor-dashboard h2,
+.sensor-dashboard h3 {
+  margin: 0;
+  color: #19352a;
+}
+
+.sensor-dashboard h2 {
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+.sensor-dashboard h3 {
+  font-size: 1.15rem;
+}
+
+.sensor-dashboard__subtitle {
+  margin: 0.45rem 0 0;
+  color: #668071;
+  font-size: 0.9rem;
+}
+
+.sensor-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sensor-status--active { color: #23723c; background: #e4f6e9; }
+.sensor-status--offline { color: #b13939; background: #fde9e9; }
+.sensor-status__dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: currentColor; }
+
+.sensor-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 1.75rem 0;
+}
+
+.sensor-metric {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 0.65rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e2ece4;
+  border-top: 3px solid #6da479;
+  border-radius: 16px;
+  box-shadow: 0 7px 18px rgba(33, 78, 52, 0.06);
+}
+
+.sensor-metric__icon { grid-row: span 2; font-size: 1.45rem; }
+.sensor-metric__label { color: #668071; font-size: 0.75rem; font-weight: 700; }
+.sensor-metric strong { font-size: 1.35rem; }
+.sensor-metric small { color: #789080; font-size: 0.7rem; font-weight: 600; }
+.sensor-metric--phosphorus { border-top-color: #c28a3a; }
+.sensor-metric--potassium { border-top-color: #4c83b0; }
+.sensor-metric--moisture { border-top-color: #35a58a; }
+
+.sensor-recommendations {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid #e2ece4;
+  border-radius: 18px;
+}
+
+.sensor-recommendations__badge { padding: 0.35rem 0.65rem; color: #3b7b50; background: #e7f3e9; border-radius: 999px; font-size: 0.72rem; font-weight: 800; }
+.sensor-warning, .sensor-empty { margin: 1rem 0 0; color: #a96316; font-weight: 700; }
+.sensor-empty { color: #668071; font-weight: 500; }
+
+.crop-list { display: grid; gap: 0.65rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.crop-list__item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0.9rem; color: #426151; background: #f8fbf8; border-radius: 12px; font-size: 0.92rem; }
+.crop-list__item--top { padding: 1rem; color: #19352a; background: #eaf6ec; border: 1px solid #cce6d1; font-size: 1.08rem; font-weight: 800; }
+.crop-list__rank { display: grid; flex: 0 0 1.65rem; place-items: center; width: 1.65rem; height: 1.65rem; color: #fff; background: #4b8b59; border-radius: 50%; font-size: 0.75rem; font-weight: 800; }
+.crop-list__item--top .crop-list__rank { width: 2rem; height: 2rem; background: #2f7042; }
+.crop-list__name { flex: 1; text-transform: capitalize; }
+.crop-list__confidence { color: #6c8676; font-size: 0.82rem; font-weight: 500; }
+
+@media (max-width: 760px) {
+  .sensor-dashboard__header, .sensor-recommendations__heading { flex-direction: column; }
+  .sensor-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sensor-status { align-self: flex-start; }
+}
+
+@media (max-width: 440px) {
+  .sensor-metrics { grid-template-columns: 1fr; }
+  .crop-list__item { align-items: flex-start; flex-wrap: wrap; }
+  .crop-list__confidence { margin-left: 2.4rem; }
+}

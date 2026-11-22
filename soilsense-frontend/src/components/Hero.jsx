@@ -41,17 +41,17 @@ function Hero() {
           <button className="btn-primary" onClick={scrollToAnalysis}>
             Start Analysis
           </button>
-          <button className="btn-outline" onClick={loadDemo}>
+          {/* <button className="btn-outline" onClick={loadDemo}>
             View Demo ↗
-          </button>
+          </button> */}
         </div>
       </div>
 
-      <div className="hero-badge">
+      {/* <div className="hero-badge">
         <div className="hero-badge-label">Avg. Fertility Score</div>
         <div className="hero-badge-val">74 / 100</div>
         <div className="hero-badge-sub">Across 12,400+ tests</div>
-      </div>
+      </div> */}
     </section>
   );
 }
