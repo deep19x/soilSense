@@ -93,7 +93,19 @@ def predict():
             else:
                 print("⚠️ Free air detected (N,P,K = 0). Bypassing database insertion.")
         
-        return jsonify({'success': True, 'crop': crop}), 200
+        return jsonify({
+                'success': True,
+                'crop': crop,
+                'confidence': round(confidence, 2),
+                'top_5': [
+                    {
+                        'rank': i + 1,
+                        'crop': item['crop'],
+                        'confidence': round(item['confidence'] * 100, 2)
+                    }
+                    for i, item in enumerate(top_5)
+                ]
+        }), 200
         
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 400

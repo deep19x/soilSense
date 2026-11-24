@@ -27,8 +27,8 @@ function App() {
               <>
                 <Hero />
                 <StatsStrip />
-                <AnalysisTool />
                 <LiveSensorDashboard />
+                <AnalysisTool />
                 <HowItWorks />
               </>
             } 
